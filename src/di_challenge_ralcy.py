@@ -28,10 +28,7 @@ import numpy as np
 # Said data fame contians the following columns: ['CMTE_ID','ZIP_CODE','TRANSACTION_DT','TRANSACTION_AMT','OTHER_ID']
 ###############################################################################################################################
 
-# 
-#url = "https://raw.githubusercontent.com/InsightDataScience/find-political-donors/master/insight_testsuite/tests/test_1/input/itcont.txt"
-#df_data=pd.read_csv(url,sep="|",usecols=[0,10,13,14,15],header=None,dtype={10:'str',13:'str'},lineterminator='\n')
-df_data=pd.read_csv('itcont.txt',sep="|",usecols=[0,10,13,14,15],lineterminator='\n',header=None,dtype={10:'str',13:'str'})
+df_data=pd.read_csv('../input/itcont.txt',sep="|",usecols=[0,10,13,14,15],lineterminator='\n',header=None,dtype={10:'str',13:'str'})
 
 # Assign column indexs, respectively, to the column names below
 df_data.columns = ['CMTE_ID','ZIP_CODE','TRANSACTION_DT','TRANSACTION_AMT','OTHER_ID']
@@ -91,7 +88,7 @@ df_zdata1.MEDIAN_TRANSACTIONS_BY_ZIP = df_zdata1.MEDIAN_TRANSACTIONS_BY_ZIP.roun
 medianvals_by_zip_df = df_zdata1
 
 # Outputs medianvals_by_zip_txt to the current working directory
-medianvals_by_zip_df.to_csv('medianvals_by_zip.txt', sep='|', header=None, index=False, line_terminator='\n')
+medianvals_by_zip_df.to_csv('../output/medianvals_by_zip.txt', sep='|', header=None, index=False, line_terminator='\n')
 
 
 ########################################################################################################################################
@@ -130,15 +127,15 @@ medianvals_by_date_df = medianvals_by_date_df.reset_index()
 medianvals_by_date_df.sort_values(['CMTE_ID','TRANSACTION_DT'], ascending=[True, True])
 
 # Outputs medianvals_by_date_txt to the current working directory
-medianvals_by_date_df.to_csv('medianvals_by_date.txt', sep='|', header=None, index=False, line_terminator='\n')
+medianvals_by_date_df.to_csv('../output/medianvals_by_date.txt', sep='|', header=None, index=False, line_terminator='\n')
 
-
+ 
 ###############################################################################
 # Display critical DataFrames
 #
-display(df_data) # One DataFrame to rule them all
-display(medianvals_by_zip_df) # DataFrame of the medianvals_by_zip.txt File
-display(medianvals_by_date_df) # DataFrame of the medianvals_by_date.txt File
+#display(df_data) # One DataFrame to rule them all
+#display(medianvals_by_zip_df) # DataFrame of the medianvals_by_zip.txt File
+#display(medianvals_by_date_df) # DataFrame of the medianvals_by_date.txt File
 #
 #display(df_zdata1)
 #display(df_zdata2)
