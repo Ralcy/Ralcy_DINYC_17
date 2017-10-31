@@ -1,8 +1,3 @@
-  #Ralcy's Solution to the Political Contributions Problem
-  
-  
-  
-  
   
 ## Notes for the di_challenge_ralcy.py  
   
