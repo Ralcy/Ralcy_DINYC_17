@@ -24,7 +24,7 @@ Output path:  ../input.itcont.txt
 
 To change the paths the script will need to be edited on lines:
 
-  25  itcont.txt
-  85  medianvals_by_zip.txt
-  124 medianvals_by_date.txt'
+  26  itcont.txt
+  78  medianvals_by_zip.txt
+  109 medianvals_by_date.txt'
   
