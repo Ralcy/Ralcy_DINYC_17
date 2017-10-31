@@ -1,7 +1,4 @@
-
-# CODING CHALLENGE
-
-        Ralcy's Solution to the Political Contributions Problem
+  #Ralcy's Solution to the Political Contributions Problem
   
   
   
