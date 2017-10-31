@@ -1,5 +1,5 @@
   
-## Notes for the di_challenge_ralcy.py  
+## Notes for di_challenge_ralcy.py  
   
         Language:  Python v3.6.3  
   
