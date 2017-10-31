@@ -16,8 +16,6 @@
 #                             # 
 ###############################
 
-%reset
-
 # Pandas is the only library required for this code to work
 import pandas as pd
 import numpy as np
