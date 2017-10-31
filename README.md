@@ -1,6 +1,7 @@
-    
-# Ralcy_DINYC_17  
-Ralcy's DI Coding Challenge Solution  
+
+# CODING CHALLENGE
+
+        Ralcy's Solution to the Political Contributions Problem
   
   
   
