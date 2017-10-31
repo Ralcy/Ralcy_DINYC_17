@@ -6,10 +6,6 @@
 #  last revised: 10/31/2017                                  #
 #                                                            #
 ##############################################################
-#                                                          #
-#  Note: should the program fail to run check defined url  #
-#                                                          #
-############################################################
 #                             #
 #  Author:  Ralcy Velazco     #
 #  E-mail:  ralcyv@gmail.com  #
