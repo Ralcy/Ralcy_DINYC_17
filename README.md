@@ -1,5 +1,10 @@
+
 # Ralcy_DINYC_17
 Ralcy's DI Coding Challenge Solution
+
+
+
+
 
 
 ## Notes for the di_challenge_ralcy.py
@@ -13,6 +18,10 @@ required libraries are:
 
   pandas
   numpy
+
+
+
+
 
 
 
