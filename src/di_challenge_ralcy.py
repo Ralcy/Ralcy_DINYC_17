@@ -160,10 +160,4 @@ medianvals_by_date_df.to_csv('../output/medianvals_by_date.txt', sep='|', header
 #display(medianvals_by_zip_df) # DataFrame of the medianvals_by_zip.txt File
 #display(medianvals_by_date_df) # DataFrame of the medianvals_by_date.txt File
 #
-#display(df_zdata1)
-#display(df_zdata2)
-#display(df_zdata3)
-#display(df_ddata1)
-#display(df_ddata2)
-#display(df_ddata3)
 ################################################################################
