@@ -1,4 +1,7 @@
-  
+  <p align="center">
+
+</p>
+
 ## Notes for di_challenge_ralcy.py  
   
         Language:  Python v3.6.3  
