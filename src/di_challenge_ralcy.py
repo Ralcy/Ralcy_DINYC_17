@@ -3,7 +3,11 @@
 #  Program filename: di_challenge_ralcy.py                   #
 #                                                            #
 #  language: Python (v3.6.3)                                 #
-#  last revised: 11/07/2017                                  #
+#  last revised: 11/12/2017                                  #
+#                                                            #
+#  How to run: Execute "run.sh" from the cmd promt           #
+#              If desired modify input & 2 outputs on lines: #
+#              30, 100, & 140                                #
 #                                                            #
 ##############################################################
 #                             #
@@ -11,31 +15,10 @@
 #  E-mail:  ralcyv@gmail.com  #
 #                             # 
 ###############################
-%reset
+#%reset
 
 import pandas as pd
 import numpy as np
-
-
-'''
-Status:
-=======
-
-1) investigate proceeding by choosing to process the input data file line by line, in small batches 
-   or all at once depending on which method you believe to be the best given the challenge description. However,
-   when calculating the running median, total number of transactions and total amount of contributions, you should only
-   take into account the input data that has streamed in so far -- in other words, from the top of the input file to 
-   the current line. See the below example for more guidance. (((tackle this last)))   
-
-2) Review all comments
-
-3) check efficiency of logic
-
-4) revisit coercing/checking dates to stay within valid dates between 2015 & 2017
-
-'''
-
-
 
 
 ###############################################################################################################################
@@ -44,7 +27,7 @@ Status:
 ###############################################################################################################################
 
 
-df_data=pd.read_csv('../input/itcont.txt',sep="|",usecols=[0,10,13,14,15],lineterminator='\n',header=None,dtype={10:'str',13:'str'})
+df_data=pd.read_csv('input/itcont.txt',sep="|",usecols=[0,10,13,14,15],lineterminator='\n',header=None,dtype={10:'str',13:'str'})
 
 # Assign column indexs, respectively, to the column names below
 df_data.columns = ['CMTE_ID','ZIP_CODE','TRANSACTION_DT','TRANSACTION_AMT','OTHER_ID']
@@ -58,16 +41,17 @@ df_data['CMTE_ID'][(df_data['CMTE_ID'].str.len() != 9)] = np.nan
 df_data = df_data[pd.notnull(df_data['CMTE_ID'])]
 
 # DataFrame remove rows that do not contain a transaction amount
+pd.options.mode.chained_assignment = None  # default='warn'
+df_data['TRANSACTION_AMT'][(df_data['TRANSACTION_AMT'] <= 0)] = np.nan
 df_data = df_data[pd.notnull(df_data['TRANSACTION_AMT'])]
+df_data.TRANSACTION_AMT = df_data.TRANSACTION_AMT.round().apply(int)
+
 
 # Set Zip Codes with non 5 or 9 char lengths to NaN
 df_data['ZIP_CODE'][(df_data['ZIP_CODE'].str.len() != 5) & (df_data['ZIP_CODE'].str.len() != 9)] = np.nan
 
 # Set Transaction Dates with non 8 char lengths or dates outside 2015-2017 to NaN
 df_data['TRANSACTION_DT'][(df_data['TRANSACTION_DT'].str.len() != 8)] = np.nan
-df_data['TRANSACTION_DT'] = df_data['TRANSACTION_DT'].astype(np.int)
-df_data['TRANSACTION_DT'][(df_data['TRANSACTION_DT'] < 1012015) & (df_data['TRANSACTION_DT'] >= 12312017)] = np.nan
-df_data['TRANSACTION_DT'] = df_data['TRANSACTION_DT'].apply('{:0>8}'.format).str[:8].astype(np.str)
 
 
 ###############################################################################################################################
@@ -113,7 +97,7 @@ del df_zdata1['TRANSACTION_AMT']
 medianvals_by_zip_df = df_zdata1
 
 # Outputs medianvals_by_zip_txt to the current working directory
-medianvals_by_zip_df.to_csv('../output/medianvals_by_zip.txt', sep='|', header=None, index=False, line_terminator='\n')
+medianvals_by_zip_df.to_csv('output/medianvals_by_zip.txt', sep='|', header=None, index=False, line_terminator='\n')
 
 
 ########################################################################################################################################
@@ -127,6 +111,11 @@ df_ddata1 = df_data.groupby(['CMTE_ID','TRANSACTION_DT']).size().reset_index(nam
 
 # Line below removes NaN values of Transaction date
 df_ddata1 = df_ddata1[pd.notnull(df_ddata1['TRANSACTION_DT'])]
+df_ddata1['TRANSACTION_DT'] = df_ddata1['TRANSACTION_DT'].astype(np.int)
+df_ddata1['TRANSACTION_DT'][(df_ddata1['TRANSACTION_DT'] < 1012015) & (df_ddata1['TRANSACTION_DT'] >= 12312017)] = np.nan
+df_ddata1['TRANSACTION_DT'] = df_ddata1['TRANSACTION_DT'].apply('{:0>8}'.format).str[:8].astype(np.str)
+
+
 
 df_ddata1.set_index(['CMTE_ID','TRANSACTION_DT'],inplace=True)
 
@@ -148,7 +137,7 @@ medianvals_by_date_df = medianvals_by_date_df.reset_index()
 medianvals_by_date_df.sort_values(['CMTE_ID','TRANSACTION_DT'], ascending=[True, True])
 
 # Outputs medianvals_by_date_txt to the current working directory
-medianvals_by_date_df.to_csv('../output/medianvals_by_date.txt', sep='|', header=None, index=False, line_terminator='\n')
+medianvals_by_date_df.to_csv('output/medianvals_by_date.txt', sep='|', header=None, index=False, line_terminator='\n')
 
 
 ###############################################################################
